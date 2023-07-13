@@ -28,22 +28,12 @@ ARG MSFT_SBOM_VERSION=0.3.1
 RUN curl -Lo msft-sbom https://github.com/microsoft/sbom-tool/releases/download/v${MSFT_SBOM_VERSION}/sbom-tool-linux-x64 && \
     chmod +x msft-sbom && mv msft-sbom /usr/local/bin/msft-sbom
 
-# Install notation
-ARG NOTATION_VERSION=1.0.0-rc.1
-RUN curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v$NOTATION_VERSION/notation_${NOTATION_VERSION}_linux_amd64.tar.gz \
-    && tar -zxf notation.tar.gz -C /usr/local/bin notation \
-    && rm -rf notation.tar.gz
+ARG COSIGN_VERSION=2.0.2
+RUN curl -Lo cosign https://github.com/sigstore/cosign/releases/download/v$COSIGN_VERSION/cosign-linux-amd64 \
+    && mv cosign /usr/local/bin/cosign 
 
 # Install ORAS CLI
 ARG ORAS_VERSION=0.16.0
 RUN curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz \
     && tar -zxf oras.tar.gz -C /usr/local/bin oras \
     && rm -rf oras.tar.gz
-
-USER vscode
-ARG AKV_PLUGIN_VERSION=0.5.0-rc.1
-RUN mkdir -p /home/vscode/.config/notation/plugins/azure-kv \
-    && cd /home/vscode/.config/notation/plugins/azure-kv \
-    && curl -Lo notation-azure-kv.tar.gz https://github.com/Azure/notation-azure-kv/releases/download/v${AKV_PLUGIN_VERSION}/notation-azure-kv_${AKV_PLUGIN_VERSION}_Linux_amd64.tar.gz \
-    && tar -zxf notation-azure-kv.tar.gz notation-azure-kv \
-    && rm notation-azure-kv.tar.gz
