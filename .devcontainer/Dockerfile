@@ -30,10 +30,10 @@ RUN curl -Lo msft-sbom https://github.com/microsoft/sbom-tool/releases/download/
 
 ARG COSIGN_VERSION=2.0.2
 RUN curl -Lo cosign https://github.com/sigstore/cosign/releases/download/v$COSIGN_VERSION/cosign-linux-amd64 \
-    && mv cosign /usr/local/bin/cosign 
+    && mv cosign /usr/local/bin/cosign
 
 # Install ORAS CLI
-ARG ORAS_VERSION=0.16.0
+ARG ORAS_VERSION=1.0.0
 RUN curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz \
     && tar -zxf oras.tar.gz -C /usr/local/bin oras \
     && rm -rf oras.tar.gz

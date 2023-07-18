@@ -80,13 +80,12 @@ Your Codespace also has a local portal that exposes a number of services that wi
 
 > You can also view the list of [forwarded ports](https://docs.github.com/en/codespaces/developing-in-codespaces/forwarding-ports-in-your-codespace) available to your Codespace in the `PORTS` tab in the Integrated Terminal
 
-### Configuring Azure Container Registry with SBOM and signed images
+### Configuring with SBOM and signed images
 
-To set the build and release pipeline to generate a SBOM, sign the image and push to Azure Container Registry, set the following secrets in your by following [creating the following secrets in the repository](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
+To set the build and release pipeline to generate a SBOM, sign the image in github registry, set the following secrets in your by following [creating the following secrets in the repository](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
 
 - `AZURE_CREDENTIALS` - this should be a service principal with owner permissions
 - `CLUSTER_NAME` - this is used to retrieve your key vault name
-- `CONTAINER_REGISTRY_URL` - the name of your Azure Container Registry
 
 ### Configuring a different Container Registry
 
