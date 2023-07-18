@@ -88,6 +88,7 @@ jobs:
           version: 1.0.0
 
       - name: Login to Azure Cloud with CLI
+        if: needs.check-secret.outputs.my-key-exists == 'true'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
