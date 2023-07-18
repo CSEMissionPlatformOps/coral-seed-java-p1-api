@@ -22,3 +22,18 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+# Install sbom
+ARG MSFT_SBOM_VERSION=0.3.1
+RUN curl -Lo msft-sbom https://github.com/microsoft/sbom-tool/releases/download/v${MSFT_SBOM_VERSION}/sbom-tool-linux-x64 && \
+    chmod +x msft-sbom && mv msft-sbom /usr/local/bin/msft-sbom
+
+ARG COSIGN_VERSION=2.0.2
+RUN curl -Lo cosign https://github.com/sigstore/cosign/releases/download/v$COSIGN_VERSION/cosign-linux-amd64 \
+    && mv cosign /usr/local/bin/cosign
+
+# Install ORAS CLI
+ARG ORAS_VERSION=1.0.0
+RUN curl -Lo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz \
+    && tar -zxf oras.tar.gz -C /usr/local/bin oras \
+    && rm -rf oras.tar.gz

@@ -61,7 +61,7 @@ After the Codespace is created, your development environment is ready to go! Try
   - Open `Tasks: Run Task` (press `Ctrl+Shift+P`), type and select `Tasks: Run Task`, then `Run` to launch your app in watch mode
   - Now, from `Tasks: Run Task`, select `Open Port in Browser` and choose port `5000` to visit your running app
     - `/healthcheck`: confirm the service is up and *Healthy*
-    - `/metrics`: view the metrics configured to be scraped by Prometheus    
+    - `/metrics`: view the metrics configured to be scraped by Prometheus
 
 ### Container Development
 
@@ -80,16 +80,22 @@ Your Codespace also has a local portal that exposes a number of services that wi
 
 > You can also view the list of [forwarded ports](https://docs.github.com/en/codespaces/developing-in-codespaces/forwarding-ports-in-your-codespace) available to your Codespace in the `PORTS` tab in the Integrated Terminal
 
+### Configuring with SBOM and signed images
+
+To set the build and release pipeline to generate a SBOM, sign the image in github registry, set the following secrets in your by following [creating the following secrets in the repository](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
+
+- `AZURE_CREDENTIALS` - this should be a service principal with owner permissions
+- `CLUSTER_NAME` - this is used to retrieve your key vault name
 
 ### Configuring a different Container Registry
 
 This environment comes with github actions to build and push the application containers to the GitHub container registry.
 
-If you wish, you can configure the repo to use the container registry of your choice by [creating the following secrets in the repository](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
+If you wish, you can configure the repository to use the container registry of your choice by [creating the following secrets in the repository](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
 
-- CONTAINER_REGISTRY_URL
-- CONTAINER_REGISTRY_USER
-- CONTAINER_REGISTRY_ACCESS_TOKEN
+- `CONTAINER_REGISTRY_URL`
+- `CONTAINER_REGISTRY_USER`
+- `CONTAINER_REGISTRY_ACCESS_TOKEN`
 
 These values can be obtained from your specific container registry provider.
 
